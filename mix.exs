@@ -61,7 +61,16 @@ defmodule Cachex.Mixfile do
       test_coverage: [
         tool: ExCoveralls
       ],
-      preferred_cli_env: [
+      aliases: [
+        bench: "run benchmarks/main.exs",
+        test: [&start_epmd/1, "test"]
+      ]
+    ]
+  end
+
+  def cli do
+    [
+      preferred_envs: [
         docs: :docs,
         bench: :bench,
         credo: :lint,
@@ -69,10 +78,6 @@ defmodule Cachex.Mixfile do
         coveralls: :cover,
         "coveralls.html": :cover,
         "coveralls.travis": :cover
-      ],
-      aliases: [
-        bench: "run benchmarks/main.exs",
-        test: [&start_epmd/1, "test"]
       ]
     ]
   end
